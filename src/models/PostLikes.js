@@ -16,4 +16,4 @@ class PostLikes extends Model {
     }
 }
 
-module.exports = PostLikes; 
+module.exports = PostLikes;

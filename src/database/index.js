@@ -8,13 +8,13 @@ const PostLikes = require('../models/PostLikes.js')
 const connection = new Sequelize(dbConfig);
 
 function setupAssociations() {
-    User.init(sequelize);
-    Post.init(sequelize);
-    PostLikes.init(sequelize);
+	User.init(sequelize);
+	Post.init(sequelize);
+	PostLikes.init(sequelize);
   
-    User.associate({ Post, PostLikes });
-    Post.associate({ User, PostLikes });
-  }
+	User.associate({ Post, PostLikes });
+	Post.associate({ User, PostLikes });
+}
 
 User.init(connection);
 Post.init(connection);
