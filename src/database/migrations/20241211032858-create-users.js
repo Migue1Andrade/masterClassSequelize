@@ -36,9 +36,8 @@ module.exports = {
 			},
 			updated_at: {
 				type: Sequelize.DATE,
-				allowNull: false,
-				defaultValue: Sequelize.fn('now'),
-			}
+				allowNull: true,
+            }
 		}, { transaction });
 
 		await transaction.commit();
@@ -48,13 +47,14 @@ module.exports = {
 		}
 	},
 
-  async down (queryInterface, Sequelize) {
+  async down (queryInterface) {
 
 	const transaction = queryInterface.sequelize.transaction();
 
 	try {
 		await queryInterface.dropTable('users');
 	} catch (error) {
+		console.log("🚀 ~ down ~ error:", error)
 		await transaction.rollback();
 	}
   }

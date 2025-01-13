@@ -9,7 +9,7 @@ module.exports = {
 	
 		try {
 			
-		await queryInterface.createTable('post_likes', {
+		await queryInterface.createTable('comments', {
             id: {
 				type: Sequelize.INTEGER,
 				primaryKey: true,
@@ -30,7 +30,11 @@ module.exports = {
 				type: Sequelize.INTEGER,
 				allowNull: false
 			  },
-			liked_at: {
+            comment: {
+                type: Sequelize.STRING,
+                allowNull: true
+            },
+			comment_at: {
 				type: Sequelize.DATE,
 				allowNull: false,
 				defaultValue: Sequelize.fn('now')
@@ -41,6 +45,8 @@ module.exports = {
 				defaultValue: false
 			}
 		}, { transaction });
+
+
 
 		await transaction.commit();
 		} catch (error) {
@@ -54,9 +60,9 @@ module.exports = {
 	const transaction = queryInterface.sequelize.transaction();
 
 	try {
-		await queryInterface.dropTable('post_likes');
-	} catch (e) {
-        console.log(e);
+		await queryInterface.dropTable('comments');
+	} catch (error) {
+        console.log(error);
 		await transaction.rollback();
 	}
   }

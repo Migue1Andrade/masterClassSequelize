@@ -4,15 +4,18 @@ class PostLikes extends Model {
     static init(connection) {
         super.init({
             user_id: DataTypes.INTEGER,
-            user_post: DataTypes.INTEGER,
-            liked_at: DataTypes.DATE,
-            is_deleted: DataTypes.BOOLEAN,
+            post_id: DataTypes.INTEGER,
         }, {
             sequelize: connection,
             tableName: 'post_likes',
-            postAt: 'post_at',
+            createdAt: 'post_at',
             updatedAt: 'updated_at',
-        })
+        });
+    }
+
+    static associate(models) {
+        PostLikes.belongsTo(models.User, { foreignKey: 'user_id' });
+        PostLikes.belongsTo(models.Post, { foreignKey: 'post_id' });
     }
 }
 

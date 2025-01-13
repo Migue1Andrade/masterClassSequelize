@@ -12,19 +12,18 @@ class User extends Model {
             tableName: 'users',
             createdAt: 'created_at',
             updatedAt: 'updated_at',
-        })
+        });
     }
 
     static associate(models) {
-        User.belongsToMany(models.Post, {
-            through: models.PostLike,
-            foreignKey: 'user_id',
-        });
-      }
+        User.hasMany(models.Post, { foreignKey: 'user_id' });
+        User.hasMany(models.PostLikes, { foreignKey: 'user_id' });
+        User.hasMany(models.Comments, { foreignKey: 'user_id' });
+    }
 
     async passwordIsValid(password) {
         return bcrypt.compare(password, this.password);
     }
-};
+}
 
 module.exports = User;

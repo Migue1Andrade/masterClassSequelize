@@ -3,13 +3,14 @@ const Post = require('../models/Post.js');
 module.exports = {
 	async store( req, res) {
 		console.log("🚀 ~ store ~ req:", req.body);
-		const { user_id, title, text, summary, post_like } = req.body;
+		const { user_id, title, text, summary, profile_img, post_img } = req.body;
 
 		try {
-			const post = await Post.create({ user_id: user_id, title: title, text: text, summary: summary, post_like: post_like});
+			const post = await Post.create({ user_id, title, text, summary, profile_img, post_img});
 
 			return res.json(post);
 		} catch(e) {
+			console.log("🚀 ~ store ~ e:", e)
 			return res.status(500).json({error: 'Erro ao criar o post'});
 		}
 	},
@@ -28,7 +29,6 @@ module.exports = {
 			return res.json(post);
 		} catch(e) {
 			console.log("🚀 ~ update ~ e:", e)
-
 			return res.status(500).json({error: 'Erro ao atualizar o post'});
 		}
 	},
