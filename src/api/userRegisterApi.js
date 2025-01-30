@@ -8,7 +8,7 @@ module.exports = {
 		
 		try {
 			const salt = genSaltSync(saltRounds);
-			const user = await User.create({ name: name, password: hashSync(password, salt), email: email });
+			const user = await User.create({ name: name, password: hashSync(password, salt), email: email, profile_img: 'https://placehold.co/600x400' });
 
 			return res.json(user);
 		} catch (error) {

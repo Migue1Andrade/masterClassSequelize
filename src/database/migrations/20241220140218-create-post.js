@@ -16,22 +16,22 @@ module.exports = {
 				autoIncrement: true,
 				allowNull: false
 			},
-            user_id: {
-                type: Sequelize.INTEGER,
-                allowNull: false,
-                references: {
-                    model: 'users', 
-                    key: 'id' 
-                },
-                onUpdate: 'CASCADE', 
-                onDelete: 'CASCADE' 
-            },
+			user_id: {
+				type: Sequelize.INTEGER,
+				allowNull: false,
+				references: {
+					model: 'users', 
+					key: 'id' 
+				},
+				onUpdate: 'CASCADE', 
+				onDelete: 'CASCADE'
+			},
 			title: {
 				type: Sequelize.STRING,
 				allowNull: false
 			},
 			text: {
-				type: Sequelize.STRING, 
+				type: Sequelize.TEXT, 
 				allowNull: false
 			},
 			summary: {
@@ -39,24 +39,20 @@ module.exports = {
 				allowNull: false
 			},
 			likes: {
-				type: Sequelize.INTEGER, 
+				type: Sequelize.INTEGER,
 				allowNull: false,
-                defaultValue: 0
+				defaultValue: 0
 			},
-            profile_img: {
-                type: Sequelize.STRING,
-                allowNull: true
-            },
-            post_img: {
-                type: Sequelize.STRING,
-                allowNull: true
-            },
-            is_deleted: {
+			post_img: {
+				type: Sequelize.STRING,
+				allowNull: true
+			},
+			is_deleted: {
 				type: Sequelize.BOOLEAN,
 				allowNull: false,
 				defaultValue: false,
-                onUpdate: 'CASCADE',
-                    onDelete: 'CASCADE'
+				onUpdate: 'CASCADE',
+				onDelete: 'CASCADE'
 			},
 			post_at: {
 				type: Sequelize.DATE,
@@ -65,7 +61,9 @@ module.exports = {
 			},
 			updated_at: {
 				type: Sequelize.DATE,
-				allowNull: true
+				allowNull: true,
+				onUpdate: 'CASCADE',
+				onDelete: 'CASCADE'
 			}
 		}, { transaction });
 
@@ -83,7 +81,7 @@ module.exports = {
 	try {
 		await queryInterface.dropTable('post');
 	} catch (error) {
-        console.log(error);
+		console.log(error);
 		await transaction.rollback();
 	}
   }

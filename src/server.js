@@ -1,5 +1,5 @@
 const express = require('express');
-const routes = require('./routes');
+const routes = require('./routes.js');
 const yup = require("yup");
 const cors = require('cors');
 
@@ -10,7 +10,7 @@ const app = express();
 app.use(cors({
     origin: 'http://localhost:8080'
 }));
-
+console.log(routes, 'route')
 app.use(express.json());
 app.use(routes);
 

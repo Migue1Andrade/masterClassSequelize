@@ -28,18 +28,29 @@ module.exports = {
             },
 			post_id: {
 				type: Sequelize.INTEGER,
-				allowNull: false
-			  },
+				allowNull: false,
+                references: {
+                    model: 'post',
+                    key: 'id'
+                },
+                onUpdate: 'CASCADE',
+                onDelete: 'CASCADE'
+			},
+            is_deleted: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false,
+                defaultValue: false
+            },
 			liked_at: {
 				type: Sequelize.DATE,
 				allowNull: false,
 				defaultValue: Sequelize.fn('now')
 			},
-			is_deleted: {
-				type: Sequelize.BOOLEAN,
-				allowNull: false,
-				defaultValue: false
-			}
+            update_at: {
+                type: Sequelize.DATE,
+                allowNull: false,
+                defaultValue: Sequelize.fn('now')
+            }
 		}, { transaction });
 
 		await transaction.commit();
