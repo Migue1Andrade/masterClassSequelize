@@ -10,4 +10,4 @@ const models = [User, Post, Comments, PostLikes];
 const connection = new Sequelize(dbConfig);
 
 models.forEach(model => model.init(connection));
-// models.forEach(model => model.associate && model.associate(connection.models));
+models.forEach(model => model.associate && model.associate(connection.models));

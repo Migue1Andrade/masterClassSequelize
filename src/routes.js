@@ -1,6 +1,5 @@
 const express = require('express');
 const loginRequired = require('./middlewares/loginRequire.js');
-const loginRequiredDelete = require('./middlewares/loginRequireDelete.js');
 
 const getUsers = require('./api/userApi.js');
 const getPosts = require('./api/postApi.js');
