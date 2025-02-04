@@ -65,6 +65,7 @@ class userService {
                 password: hashedPassword,
                 email,
                 profile_img: 'https://placehold.co/600x400'
+
             });
 
             return user;

@@ -21,7 +21,7 @@ routes.put('/api/update/post/:post_id', loginRequired, postController.updatePost
 routes.put('/api/update/user/:user_id', loginRequired, userController.updateUser);
 
 routes.get('/api/user', loginRequired, userController.index);
-routes.get('/api/post', loginRequired, postController.getAll);
+routes.get('/api/post', postController.getAll);
 routes.get('/api/post/:user_id', loginRequired, postController.getUserPosts);
 routes.get('/api/user/:user_id', loginRequired,userController.getUserById);
 routes.get('/api/get/likes/:postId/:userId', loginRequired, likeController.checkLike);

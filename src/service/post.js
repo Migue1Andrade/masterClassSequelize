@@ -1,4 +1,5 @@
 const Post = require('../models/Post');
+const User = require('../models/User');
 
 class PostService {
 	async createPost(user_id, postData) {
@@ -73,6 +74,7 @@ class PostService {
 				}
 			});
 
+			console.log("🚀 ~ PostService ~ getAllPosts ~ data:", data)
 			return data;
 		} catch (error) {
 			throw new Error('Erro ao buscar dados do post');
